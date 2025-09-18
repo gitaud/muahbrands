@@ -1,1 +1,0 @@
-import { CollectionConfig } from "payload";

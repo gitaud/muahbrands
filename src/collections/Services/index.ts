@@ -33,7 +33,18 @@ export const Services: CollectionConfig<'services'> = {
   },
   fields: [
     {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true 
+    },
+    {
       name: 'name',
+      type: 'text',
+      required: true
+    },
+    {
+      name: 'description',
       type: 'text',
       required: true
     },
@@ -85,11 +96,7 @@ export const Services: CollectionConfig<'services'> = {
         }
       ]
     },
-    {
-      name: 'description',
-      type: 'text',
-      required: true
-    },
+    
   ],
   hooks: {
     afterChange: [revalidateService],

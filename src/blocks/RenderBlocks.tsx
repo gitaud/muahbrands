@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react'
 
-import type { Page } from '@/payload-types'
+import type { FeatureBlock as FeatureBlockType, Page } from '@/payload-types'
 
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
+import { FeatureBlock } from '@/blocks/Feature/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -14,10 +15,11 @@ const blockComponents = {
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
+  featureBlock: FeatureBlock,
 }
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][]
+  blocks: Page['layout'][0][] | FeatureBlockType[]
 }> = (props) => {
   const { blocks } = props
 

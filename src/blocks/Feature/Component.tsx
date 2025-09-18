@@ -1,9 +1,12 @@
-type FeatureProps = {
-  name: string
-  description: string
-  image: string
-}
+import React from 'react';
 
-export default function Feature() {
+import type { FeatureBlock as FeatureBlockProps } from '@/payload-types';
 
+export const FeatureBlock: React.FC<FeatureBlockProps> = (props) => {
+  console.log(props)
+  return(
+    <div className="container my-16">
+      
+    </div>
+  )
 }
