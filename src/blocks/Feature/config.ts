@@ -4,6 +4,19 @@ export const FeatureBlock: Block = {
   slug: 'featureBlock',
   interfaceName: 'FeatureBlock',
   fields: [
-    
+    {
+      name: 'title',
+      type: 'text',
+      required: true
+    },
+    {
+      name: 'description',
+      type: 'text',
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+    },
   ]
 }
