@@ -25,40 +25,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { cn } from "@/utilities/ui";
 
-const Navbar = () => {
-  const features = [
-    {
-      title: "Dashboard",
-      description: "Overview of your activity",
-      href: "#",
-    },
-    {
-      title: "Analytics",
-      description: "Track your performance",
-      href: "#",
-    },
-    {
-      title: "Settings",
-      description: "Configure your preferences",
-      href: "#",
-    },
-    {
-      title: "Integrations",
-      description: "Connect with other tools",
-      href: "#",
-    },
-    {
-      title: "Storage",
-      description: "Manage your files",
-      href: "#",
-    },
-    {
-      title: "Support",
-      description: "Get help when needed",
-      href: "#",
-    },
-  ];
+import { CMSLink } from "../Link";
+import type { Nav as NavType } from "@/payload-types";
+
+const Navbar = ({ data } : {data: NavType}) => {
+  const { accordion, links, ctas } = data;
 
   return (
     <section className="py-4">
@@ -70,7 +43,7 @@ const Navbar = () => {
           >
             <img
               src="muah_logo.jpg"
-              className="max-h-8"
+              className="max-h-8 rounded-full"
               alt="Muah Branding Logo"
             />
             <span className="text-lg font-semibold tracking-tighter">
@@ -79,58 +52,39 @@ const Navbar = () => {
           </a>
           <NavigationMenu className="hidden lg:block">
             <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Features</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="grid w-[600px] grid-cols-2 p-3">
-                    {features.map((feature, index) => (
-                      <NavigationMenuLink
-                        href={feature.href}
-                        key={index}
-                        className="rounded-md p-3 transition-colors hover:bg-muted/70"
-                      >
-                        <div key={feature.title}>
-                          <p className="mb-1 font-semibold text-foreground">
-                            {feature.title}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {feature.description}
-                          </p>
-                        </div>
-                      </NavigationMenuLink>
-                    ))}
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="#"
-                  className={navigationMenuTriggerStyle()}
-                >
-                  Products
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="#"
-                  className={navigationMenuTriggerStyle()}
-                >
-                  Resources
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="#"
-                  className={navigationMenuTriggerStyle()}
-                >
-                  Contact
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+              {
+                accordion?.map((item, index) => (
+                  <NavigationMenuItem key={index}>
+                    <NavigationMenuTrigger>{item?.accordion?.title}</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="grid w-[600px] grid-cols-2 p-3">
+                        {item?.accordion?.items?.map((link, index) => (
+                          <CMSLink {...link?.link}
+                            key={index}
+                            className={cn("rounded-md p-3 transition-colors hover:bg-muted/70", navigationMenuTriggerStyle())}
+                          />
+                        ))}
+                      </div>
+                    </NavigationMenuContent>
+
+                  </NavigationMenuItem>
+                ))
+              }
+              {
+                links?.map((link, index) => (
+                  <NavigationMenuItem key={index}>
+                      <CMSLink {...link.link} className={navigationMenuTriggerStyle()} />
+                  </NavigationMenuItem>
+                ))
+              }
             </NavigationMenuList>
           </NavigationMenu>
           <div className="hidden items-center gap-4 lg:flex">
-            <Button variant="outline">Sign in</Button>
-            <Button>Start for free</Button>
+             {
+                ctas && ctas.map((cta, index) => (
+                  <CMSLink {...cta.link} key={index}/>
+                ))
+             }
           </div>
           <Sheet>
             <SheetTrigger asChild className="lg:hidden">
@@ -157,47 +111,44 @@ const Navbar = () => {
                 </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col p-4">
-                <Accordion type="single" collapsible className="mt-4 mb-2">
-                  <AccordionItem value="solutions" className="border-none">
-                    <AccordionTrigger className="text-base hover:no-underline">
-                      Features
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="grid md:grid-cols-2">
-                        {features.map((feature, index) => (
-                          <a
-                            href={feature.href}
-                            key={index}
-                            className="rounded-md p-3 transition-colors hover:bg-muted/70"
-                          >
-                            <div key={feature.title}>
-                              <p className="mb-1 font-semibold text-foreground">
-                                {feature.title}
-                              </p>
-                              <p className="text-sm text-muted-foreground">
-                                {feature.description}
-                              </p>
-                            </div>
-                          </a>
-                        ))}
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-                <div className="flex flex-col gap-6">
-                  <a href="#" className="font-medium">
-                    Templates
-                  </a>
-                  <a href="#" className="font-medium">
-                    Blog
-                  </a>
-                  <a href="#" className="font-medium">
-                    Pricing
-                  </a>
-                </div>
+                {
+                  accordion?.map((item, index) => (
+                    <Accordion key={index} type="single" collapsible className="mt-4 mb-2">
+                      <AccordionTrigger className="text-base hover:no-underline">
+                        { item.accordion?.title}
+                      </AccordionTrigger>
+                      <AccordionItem value="solutions" className="border-none">
+                        <AccordionContent>
+                          <div className="grid">
+                            {
+                              item.accordion?.items?.map((link, index) => (
+                                <CMSLink {...link.link}
+                                  key={index}
+                                  className="rounded-md p-3 transition-colors hover:bg-muted/70"
+                                />
+                              ))
+                            }
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  ))
+                }
+                { links && 
+                  <div className="flex flex-col gap-6">
+                    {
+                      links.map((link, index) => (
+                        <CMSLink key={index} {...link.link} />
+                      ))
+                    }
+                  </div>
+                }
                 <div className="mt-6 flex flex-col gap-4">
-                  <Button variant="outline">Sign in</Button>
-                  <Button>Start for free</Button>
+                  {
+                    ctas && ctas.map((cta, index) => (
+                      <CMSLink {...cta.link} key={index}/>
+                    ))
+                  }
                 </div>
               </div>
             </SheetContent>

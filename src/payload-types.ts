@@ -104,10 +104,12 @@ export interface Config {
   };
   globals: {
     header: Header;
+    nav: Nav;
     footer: Footer;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
+    nav: NavSelect<false> | NavSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: null;
@@ -196,6 +198,17 @@ export interface Page {
         }[]
       | null;
     media?: (number | null) | Media;
+  };
+  heroSlider?: {
+    headline?: string | null;
+    cta_label?: string | null;
+    cta_link?: string | null;
+    images?:
+      | {
+          image: number | Media;
+          id?: string | null;
+        }[]
+      | null;
   };
   layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
   meta?: {
@@ -1140,6 +1153,19 @@ export interface PagesSelect<T extends boolean = true> {
             };
         media?: T;
       };
+  heroSlider?:
+    | T
+    | {
+        headline?: T;
+        cta_label?: T;
+        cta_link?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+            };
+      };
   layout?:
     | T
     | {
@@ -1772,6 +1798,104 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav".
+ */
+export interface Nav {
+  id: number;
+  logo?:
+    | {
+        id?: string | null;
+      }[]
+    | null;
+  accordion?:
+    | {
+        accordion?: {
+          title?: string | null;
+          items?:
+            | {
+                link: {
+                  type?: ('reference' | 'custom') | null;
+                  newTab?: boolean | null;
+                  reference?:
+                    | ({
+                        relationTo: 'pages';
+                        value: number | Page;
+                      } | null)
+                    | ({
+                        relationTo: 'posts';
+                        value: number | Post;
+                      } | null)
+                    | ({
+                        relationTo: 'services';
+                        value: number | Service;
+                      } | null);
+                  url?: string | null;
+                  label: string;
+                };
+                id?: string | null;
+              }[]
+            | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null)
+            | ({
+                relationTo: 'services';
+                value: number | Service;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  ctas?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null)
+            | ({
+                relationTo: 'services';
+                value: number | Service;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer".
  */
 export interface Footer {
@@ -1819,6 +1943,73 @@ export interface HeaderSelect<T extends boolean = true> {
               reference?: T;
               url?: T;
               label?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav_select".
+ */
+export interface NavSelect<T extends boolean = true> {
+  logo?:
+    | T
+    | {
+        id?: T;
+      };
+  accordion?:
+    | T
+    | {
+        accordion?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                        };
+                    id?: T;
+                  };
+            };
+        id?: T;
+      };
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  ctas?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
             };
         id?: T;
       };

@@ -9,10 +9,38 @@ type Global = keyof Config['globals']
 async function getGlobal(slug: Global, depth = 0) {
   const payload = await getPayload({ config: configPromise })
 
-  const global = await payload.findGlobal({
+  let args = {
     slug,
-    depth,
-  })
+    depth
+  }
+
+  if (slug == 'nav') {
+    args['populate'] = {
+      accordion: {
+        accordion: {
+          link: {
+            label: true,
+            reference: {
+              relationTo: true,
+              value: {
+                slug: true,
+                id: false,
+                name: false,
+                description: false,
+                layout: false,
+                hero: false,
+                meta: false,
+                updatedAt: false
+              }
+            }
+          }
+        }
+      },
+      links: true
+    }
+  }
+
+  const global = await payload.findGlobal(args)
 
   return global
 }
