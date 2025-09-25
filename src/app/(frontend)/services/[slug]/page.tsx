@@ -43,7 +43,6 @@ export default async function Service({ params: paramsPromise }: Args) {
   const { slug = '' } = await paramsPromise
   const url = '/services/' + slug
   const service = await queryServiceBySlug( { slug })
-  console.log(service);
 
   if (!service) return <PayloadRedirects url={url} />
 
@@ -86,8 +85,6 @@ const queryServiceBySlug = cache(async ({ slug }: { slug: string }) => {
       }
     }
   })
-
-  console.log("Result", result);
 
   return result.docs?.[0] || null
 

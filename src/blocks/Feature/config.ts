@@ -20,3 +20,8 @@ export const FeatureBlock: Block = {
     },
   ]
 }
+
+// export const FeaturesBlock: Block = {
+//   slug: 'featuresBlock',
+  
+// }

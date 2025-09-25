@@ -5,10 +5,10 @@ import configPromise from '@payload-config'
 import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
-import { homeStatic } from '@/endpoints/seed/home-static'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
+import { ImagesSliderComponent } from '@/components/HeroSlider'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
@@ -63,17 +63,18 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />
   }
 
-  const { hero, layout } = page
+  const { hero, layout, heroSlider } = page
 
   return (
-    <article className="pt-16 pb-24">
-      <PageClient />
+    <article className="">
+      {/* <PageClient /> */}
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
 
-      <RenderHero {...hero} />
+      {/* <RenderHero {...hero} /> */}
+      { heroSlider && <ImagesSliderComponent {...heroSlider}/>}
       <RenderBlocks blocks={layout} />
     </article>
   )
