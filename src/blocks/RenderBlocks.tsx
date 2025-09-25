@@ -8,6 +8,7 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { FeatureBlock } from '@/blocks/Feature/Component'
+import { CardsBlock } from '@/blocks/Cards/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,10 +17,11 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   featureBlock: FeatureBlock,
+  cardsBlock: CardsBlock
 }
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][] | FeatureBlockType[]
+  blocks: Page['layout'][0][]
 }> = (props) => {
   const { blocks } = props
 
