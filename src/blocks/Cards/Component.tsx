@@ -31,6 +31,16 @@ export const CardsBlock: React.FC<
 
 
   return(
-    <Gallery />
+    <Gallery heading={'Services'} demoUrl='about-us' items={
+      services.map(service => {
+        return {
+          id: service.id,
+          title: service.name,
+          summary: service.description,
+          url: "/services/" + service.slug,
+          image: (service?.meta?.image ? "/media/" + service.meta?.image?.filename : '/muah_logo.jpg')
+        }
+      })
+    }/>
   )
- }
+}
