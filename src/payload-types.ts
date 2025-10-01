@@ -73,6 +73,7 @@ export interface Config {
     categories: Category;
     users: User;
     services: Service;
+    info: Info;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -90,6 +91,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
+    info: InfoSelect<false> | InfoSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -186,6 +188,10 @@ export interface Page {
               | ({
                   relationTo: 'services';
                   value: number | Service;
+                } | null)
+              | ({
+                  relationTo: 'info';
+                  value: number | Info;
                 } | null);
             url?: string | null;
             label: string;
@@ -463,6 +469,10 @@ export interface Service {
               | ({
                   relationTo: 'services';
                   value: number | Service;
+                } | null)
+              | ({
+                  relationTo: 'info';
+                  value: number | Info;
                 } | null);
             url?: string | null;
             label: string;
@@ -487,6 +497,128 @@ export interface Service {
   };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "info".
+ */
+export interface Info {
+  id: number;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  title: string;
+  layout: (ContentBlock | CTABlock)[];
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock".
+ */
+export interface ContentBlock {
+  columns?:
+    | {
+        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        enableLink?: boolean | null;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null)
+            | ({
+                relationTo: 'services';
+                value: number | Service;
+              } | null)
+            | ({
+                relationTo: 'info';
+                value: number | Info;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'content';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTABlock".
+ */
+export interface CTABlock {
+  title: string;
+  description: string;
+  items: {
+    item?: string | null;
+    id?: string | null;
+  }[];
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null)
+      | ({
+          relationTo: 'services';
+          value: number | Service;
+        } | null)
+      | ({
+          relationTo: 'info';
+          value: number | Info;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ctaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -550,6 +682,10 @@ export interface CallToActionBlock {
             | ({
                 relationTo: 'services';
                 value: number | Service;
+              } | null)
+            | ({
+                relationTo: 'info';
+                value: number | Info;
               } | null);
           url?: string | null;
           label: string;
@@ -583,98 +719,6 @@ export interface FeatureBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'featureBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CTABlock".
- */
-export interface CTABlock {
-  title: string;
-  description: string;
-  items: {
-    item?: string | null;
-    id?: string | null;
-  }[];
-  link: {
-    type?: ('reference' | 'custom') | null;
-    newTab?: boolean | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: number | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: number | Post;
-        } | null)
-      | ({
-          relationTo: 'services';
-          value: number | Service;
-        } | null);
-    url?: string | null;
-    label: string;
-    /**
-     * Choose how the link should be rendered.
-     */
-    appearance?: ('default' | 'outline') | null;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'ctaBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock".
- */
-export interface ContentBlock {
-  columns?:
-    | {
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        enableLink?: boolean | null;
-        link?: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null)
-            | ({
-                relationTo: 'services';
-                value: number | Service;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'content';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1134,6 +1178,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'services';
         value: number | Service;
+      } | null)
+    | ({
+        relationTo: 'info';
+        value: number | Info;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1633,6 +1681,31 @@ export interface BannerBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "info_select".
+ */
+export interface InfoSelect<T extends boolean = true> {
+  slug?: T;
+  slugLock?: T;
+  title?: T;
+  layout?:
+    | T
+    | {
+        content?: T | ContentBlockSelect<T>;
+        ctaBlock?: T | CTABlockSelect<T>;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
@@ -1909,6 +1982,10 @@ export interface Header {
             | ({
                 relationTo: 'services';
                 value: number | Service;
+              } | null)
+            | ({
+                relationTo: 'info';
+                value: number | Info;
               } | null);
           url?: string | null;
           label: string;
@@ -1951,6 +2028,10 @@ export interface Nav {
                     | ({
                         relationTo: 'services';
                         value: number | Service;
+                      } | null)
+                    | ({
+                        relationTo: 'info';
+                        value: number | Info;
                       } | null);
                   url?: string | null;
                   label: string;
@@ -1979,6 +2060,10 @@ export interface Nav {
             | ({
                 relationTo: 'services';
                 value: number | Service;
+              } | null)
+            | ({
+                relationTo: 'info';
+                value: number | Info;
               } | null);
           url?: string | null;
           label: string;
@@ -2003,6 +2088,10 @@ export interface Nav {
             | ({
                 relationTo: 'services';
                 value: number | Service;
+              } | null)
+            | ({
+                relationTo: 'info';
+                value: number | Info;
               } | null);
           url?: string | null;
           label: string;
@@ -2040,6 +2129,10 @@ export interface Footer {
             | ({
                 relationTo: 'services';
                 value: number | Service;
+              } | null)
+            | ({
+                relationTo: 'info';
+                value: number | Info;
               } | null);
           url?: string | null;
           label: string;
@@ -2179,6 +2272,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'posts';
           value: number | Post;
+        } | null)
+      | ({
+          relationTo: 'info';
+          value: number | Info;
         } | null);
     global?: string | null;
     user?: (number | null) | User;
