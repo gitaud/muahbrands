@@ -100,7 +100,7 @@ const Gallery = ({
               href={demoUrl}
               className="group flex items-center gap-1 text-sm font-medium md:text-base lg:text-lg"
             >
-              Book a demo
+              Learn More
               <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
