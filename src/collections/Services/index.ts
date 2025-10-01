@@ -32,6 +32,10 @@ export const Services: CollectionConfig<'services'> = {
   admin: {
     useAsTitle: 'name'
   },
+  defaultPopulate: {
+    slug: true,
+    name: true
+  },
   fields: [
     {
       name: 'slug',
