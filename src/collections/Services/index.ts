@@ -5,6 +5,7 @@ import { anyone } from "@/access/anyone"
 
 import { Banner } from "@/blocks/Banner/config";
 import { CallToAction } from "@/blocks/CallToAction/config";
+import { CTABlock } from '@/blocks/CTA/config';
 import { FeatureBlock } from "@/blocks/Feature/config";
 
 import { hero } from "@/heros/config";
@@ -62,7 +63,7 @@ export const Services: CollectionConfig<'services'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Banner, CallToAction, FeatureBlock],
+              blocks: [Banner, CallToAction, FeatureBlock, CTABlock ],
             }
           ],
           label: 'Content'

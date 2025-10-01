@@ -9,6 +9,7 @@ import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { CardsBlock } from '@/blocks/Cards/config'
 import { FeatureBlock } from '@/blocks/Feature/config'
+import { CTABlock } from '@/blocks/CTA/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -82,7 +83,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, FeatureBlock, CardsBlock],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, FeatureBlock, CardsBlock, CTABlock ],
               required: true,
               admin: {
                 initCollapsed: true,
