@@ -210,7 +210,16 @@ export interface Page {
         }[]
       | null;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | FeatureBlock | CardsBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | FeatureBlock
+    | CardsBlock
+    | CTABlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -467,7 +476,7 @@ export interface Service {
       | null;
     media?: (number | null) | Media;
   };
-  layout?: (BannerBlock | CallToActionBlock | FeatureBlock)[] | null;
+  layout?: (BannerBlock | CallToActionBlock | FeatureBlock | CTABlock)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -561,12 +570,57 @@ export interface CallToActionBlock {
  * via the `definition` "FeatureBlock".
  */
 export interface FeatureBlock {
-  title: string;
-  description?: string | null;
-  image?: (number | null) | Media;
+  features?:
+    | {
+        feature: {
+          title: string;
+          description?: string | null;
+          image?: (number | null) | Media;
+        };
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'featureBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTABlock".
+ */
+export interface CTABlock {
+  title: string;
+  description: string;
+  items: {
+    item?: string | null;
+    id?: string | null;
+  }[];
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null)
+      | ({
+          relationTo: 'services';
+          value: number | Service;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ctaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1194,6 +1248,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         featureBlock?: T | FeatureBlockSelect<T>;
         cardsBlock?: T | CardsBlockSelect<T>;
+        ctaBlock?: T | CTABlockSelect<T>;
       };
   meta?:
     | T
@@ -1298,9 +1353,18 @@ export interface FormBlockSelect<T extends boolean = true> {
  * via the `definition` "FeatureBlock_select".
  */
 export interface FeatureBlockSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
-  image?: T;
+  features?:
+    | T
+    | {
+        feature?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1313,6 +1377,32 @@ export interface CardsBlockSelect<T extends boolean = true> {
   relationTo?: T;
   limit?: T;
   selectedDocs?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTABlock_select".
+ */
+export interface CTABlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  items?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1519,6 +1609,7 @@ export interface ServicesSelect<T extends boolean = true> {
         banner?: T | BannerBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         featureBlock?: T | FeatureBlockSelect<T>;
+        ctaBlock?: T | CTABlockSelect<T>;
       };
   meta?:
     | T
