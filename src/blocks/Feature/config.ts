@@ -1,8 +1,9 @@
-import type { Block } from 'payload'
+import type { Block, Field } from 'payload'
+import { linkGroup } from '@/fields/linkGroup'
 
-export const FeatureBlock: Block = {
-  slug: 'featureBlock',
-  interfaceName: 'FeatureBlock',
+export const Feature: Field = {
+  name: 'feature',
+  type: 'group',
   fields: [
     {
       name: 'title',
@@ -21,7 +22,14 @@ export const FeatureBlock: Block = {
   ]
 }
 
-// export const FeaturesBlock: Block = {
-//   slug: 'featuresBlock',
-  
-// }
+export const FeatureBlock: Block = {
+  slug: 'featureBlock',
+  interfaceName: 'FeatureBlock',
+  fields: [
+    {
+      name: 'features',
+      type: 'array',
+      fields: [Feature]
+    }
+  ]
+}
