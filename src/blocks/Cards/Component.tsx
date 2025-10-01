@@ -27,7 +27,6 @@ export const CardsBlock: React.FC<
 
   }
 
-  console.log(services)
 
 
   return(
