@@ -42,7 +42,7 @@ const Navbar = ({ data } : {data: NavType}) => {
             className="flex items-center gap-2"
           >
             <img
-              src="muah_logo.jpg"
+              src="/muah_logo.jpg"
               className="max-h-8 rounded-full"
               alt="Muah Branding Logo"
             />
