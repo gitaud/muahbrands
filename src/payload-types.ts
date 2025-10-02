@@ -108,11 +108,13 @@ export interface Config {
     header: Header;
     nav: Nav;
     footer: Footer;
+    ourValues: OurValues;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     nav: NavSelect<false> | NavSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    ourValues: OurValuesSelect<false> | OurValuesSelect<true>;
   };
   locale: null;
   user: User & {
@@ -2219,6 +2221,22 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ourValues".
+ */
+export interface OurValues {
+  id: number;
+  values: {
+    value: {
+      title: string;
+      description: string;
+    };
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -2323,6 +2341,26 @@ export interface FooterSelect<T extends boolean = true> {
               reference?: T;
               url?: T;
               label?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ourValues_select".
+ */
+export interface OurValuesSelect<T extends boolean = true> {
+  values?:
+    | T
+    | {
+        value?:
+          | T
+          | {
+              title?: T;
+              description?: T;
             };
         id?: T;
       };
