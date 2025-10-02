@@ -10,6 +10,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { FeatureBlock } from '@/blocks/Feature/Component'
 import { CardsBlock } from '@/blocks/Cards/Component'
 import { CTABlock } from '@/blocks/CTA/Component'
+import { CTACenteredBlock } from '@/blocks/CTACentered/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -19,7 +20,8 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   featureBlock: FeatureBlock,
   cardsBlock: CardsBlock,
-  ctaBlock: CTABlock
+  ctaBlock: CTABlock,
+  ctaCenteredBlock: CTACenteredBlock
 }
 
 export const RenderBlocks: React.FC<{

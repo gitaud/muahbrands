@@ -225,6 +225,7 @@ export interface Page {
     | FeatureBlock
     | CardsBlock
     | CTABlock
+    | CTACenteredBlock
   )[];
   meta?: {
     title?: string | null;
@@ -585,10 +586,12 @@ export interface ContentBlock {
 export interface CTABlock {
   title: string;
   description: string;
-  items: {
-    item?: string | null;
-    id?: string | null;
-  }[];
+  items?:
+    | {
+        item?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   link: {
     type?: ('reference' | 'custom') | null;
     newTab?: boolean | null;
@@ -984,6 +987,50 @@ export interface CardsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTACenteredBlock".
+ */
+export interface CTACenteredBlock {
+  title: string;
+  description: string;
+  items?:
+    | {
+        item?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null)
+      | ({
+          relationTo: 'services';
+          value: number | Service;
+        } | null)
+      | ({
+          relationTo: 'info';
+          value: number | Info;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ctaCenteredBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1297,6 +1344,7 @@ export interface PagesSelect<T extends boolean = true> {
         featureBlock?: T | FeatureBlockSelect<T>;
         cardsBlock?: T | CardsBlockSelect<T>;
         ctaBlock?: T | CTABlockSelect<T>;
+        ctaCenteredBlock?: T | CTACenteredBlockSelect<T>;
       };
   meta?:
     | T
@@ -1433,6 +1481,32 @@ export interface CardsBlockSelect<T extends boolean = true> {
  * via the `definition` "CTABlock_select".
  */
 export interface CTABlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  items?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTACenteredBlock_select".
+ */
+export interface CTACenteredBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   items?:
