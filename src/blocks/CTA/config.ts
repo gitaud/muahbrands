@@ -18,7 +18,6 @@ export const CTABlock : Block = {
     {
       name: 'items',
       type: 'array',
-      required: true,
       fields: [
         {
           name: 'item',
