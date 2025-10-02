@@ -6,6 +6,7 @@ import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 
+import { OurValues } from '@/globals/OurValues/Component'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { ImagesSliderComponent } from '@/components/HeroSlider'
@@ -76,6 +77,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       {/* <RenderHero {...hero} /> */}
       { heroSlider && <ImagesSliderComponent {...heroSlider}/>}
       <RenderBlocks blocks={layout} />
+      <OurValues />
     </article>
   )
 }
