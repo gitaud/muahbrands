@@ -2188,8 +2188,10 @@ export interface Nav {
  */
 export interface Footer {
   id: number;
-  navItems?:
-    | {
+  footerLinks: {
+    links: {
+      title: string;
+      items: {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
@@ -2214,8 +2216,10 @@ export interface Footer {
           label: string;
         };
         id?: string | null;
-      }[]
-    | null;
+      }[];
+    };
+    id?: string | null;
+  }[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2330,17 +2334,27 @@ export interface NavSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  footerLinks?:
     | T
     | {
-        link?:
+        links?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
+              title?: T;
+              items?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                        };
+                    id?: T;
+                  };
             };
         id?: T;
       };
