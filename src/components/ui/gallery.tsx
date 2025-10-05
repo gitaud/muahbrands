@@ -89,7 +89,7 @@ const Gallery = ({
     };
   }, [carouselApi]);
   return (
-    <section className="py-32">
+    <section className="py-16">
       <div className="container mx-auto">
         <div className="mb-8 flex flex-col justify-between md:mb-14 md:flex-row md:items-end lg:mb-16">
           <div>

@@ -26,7 +26,7 @@ const CTA = ({
   items = defaultItems,
 }: CTAProps) => {
   return (
-    <section className="py-32">
+    <section className="py-16">
       <div className="container mx-auto">
         <div className="">
           <div className="">
