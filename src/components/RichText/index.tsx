@@ -76,10 +76,10 @@ export default function RichText(props: Props) {
     <ConvertRichText
       converters={jsxConverters}
       className={cn(
-        'payload-richtext max-w-[60ch] ',
+        'payload-richtext !max-w-[60ch] ',
         {
           container: enableGutter,
-          'max-w-none': !enableGutter,
+          '': !enableGutter,
           'mx-auto prose md:prose-md dark:prose-invert': enableProse,
         },
         className,
