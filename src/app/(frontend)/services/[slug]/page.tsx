@@ -11,6 +11,7 @@ import { RenderHero } from '@/heros/RenderHero'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 
 import { generateMeta } from '@/utilities/generateMeta'
+import { About } from '@/globals/AboutUsBlock/Component'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -56,6 +57,7 @@ export default async function Service({ params: paramsPromise }: Args) {
 
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
+      <About />
     </article>
   )
 }

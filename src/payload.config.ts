@@ -17,6 +17,7 @@ import { InfoPage } from './collections/InfoPage'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { Nav } from './Nav/config'
+import { AboutUsBlock } from './globals/AboutUsBlock/config'
 import { OurValues } from './globals/OurValues/config'
 
 import { plugins } from './plugins'
@@ -72,7 +73,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Categories, Users, Services, InfoPage],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Nav, Footer, OurValues],
+  globals: [Header, Nav, Footer, OurValues, AboutUsBlock],
   plugins: [
     ...plugins,
     // storage-adapter-placeholder

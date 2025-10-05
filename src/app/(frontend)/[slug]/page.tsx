@@ -13,6 +13,7 @@ import { ImagesSliderComponent } from '@/components/HeroSlider'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { About } from '@/globals/AboutUsBlock/Component'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -75,9 +76,10 @@ export default async function Page({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
 
       {/* <RenderHero {...hero} /> */}
-      { heroSlider && <ImagesSliderComponent {...heroSlider}/>}
+      { heroSlider?.headline && <ImagesSliderComponent {...heroSlider}/>}
       <RenderBlocks blocks={layout} />
       <OurValues />
+      <About />
     </article>
   )
 }

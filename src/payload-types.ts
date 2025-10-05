@@ -109,12 +109,14 @@ export interface Config {
     nav: Nav;
     footer: Footer;
     ourValues: OurValues;
+    about_us: AboutUs;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     nav: NavSelect<false> | NavSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     ourValues: OurValuesSelect<false> | OurValuesSelect<true>;
+    about_us: AboutUsSelect<false> | AboutUsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -2241,6 +2243,53 @@ export interface OurValues {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about_us".
+ */
+export interface AboutUs {
+  id: number;
+  headline?: string | null;
+  aboutUs?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  logos?: {
+    headline?: string | null;
+    logos?:
+      | {
+          logo: number | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  metrics?: {
+    headline?: string | null;
+    subHeadline?: string | null;
+    metrics?:
+      | {
+          metric: {
+            title: string;
+            value: string;
+          };
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -2377,6 +2426,45 @@ export interface OurValuesSelect<T extends boolean = true> {
               description?: T;
             };
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about_us_select".
+ */
+export interface AboutUsSelect<T extends boolean = true> {
+  headline?: T;
+  aboutUs?: T;
+  logos?:
+    | T
+    | {
+        headline?: T;
+        logos?:
+          | T
+          | {
+              logo?: T;
+              id?: T;
+            };
+      };
+  metrics?:
+    | T
+    | {
+        headline?: T;
+        subHeadline?: T;
+        metrics?:
+          | T
+          | {
+              metric?:
+                | T
+                | {
+                    title?: T;
+                    value?: T;
+                  };
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
