@@ -1,12 +1,13 @@
 import { ArrowRight, Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { CMSLinkType, CMSLink } from "@/components/Link";
+
 
 interface CTAProps {
   title?: string;
   description?: string;
-  buttonText?: string;
-  buttonUrl?: string;
+  link: CMSLinkType
   items?: string[];
 }
 
@@ -21,8 +22,7 @@ const defaultItems = [
 const CTA = ({
   title = "Call to Action",
   description = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto illo praesentium nisi, accusantium quae.",
-  buttonText = "Get Started",
-  buttonUrl = "https://shadcnblocks.com",
+  link,
   items = defaultItems,
 }: CTAProps) => {
   return (
@@ -34,11 +34,7 @@ const CTA = ({
               <div className="md:w-1/2">
                 <h4 className="mb-1 text-2xl font-bold md:text-3xl">{title}</h4>
                 <p className="text-muted-foreground">{description}</p>
-                <Button className="mt-6" asChild>
-                  <a href={buttonUrl}>
-                    {buttonText} <ArrowRight className="size-4" />
-                  </a>
-                </Button>
+                <CMSLink className="mt-6" {...link} />
               </div>
               <div className="md:w-1/3">
                 <ul className="flex flex-col space-y-2 text-sm font-medium">
