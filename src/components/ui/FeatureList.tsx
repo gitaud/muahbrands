@@ -1,4 +1,4 @@
-import { Timer, Zap, ZoomIn } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { ElementType } from "react";
 
 type FeatureProps = {
@@ -17,14 +17,14 @@ const FeatureList = (
   subtitle = 'Why Choose Us',
   items = [
     {
-      icon: 'Timer',
+      icon: 'Zap',
       title: 'Performance',
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt beatae tenetur totam aut blanditis ipsa quaerat neque eaque, atque doloremque! Eligendi."
     }
   ]
 }: FeatureProps) => {
   return (
-    <section className="pb-32">
+    <section className="py-16">
       <div className="container mx-auto">
         <p className="mb-4 text-sm text-center text-muted-foreground lg:text-base">
           {title}
@@ -40,7 +40,7 @@ const FeatureList = (
                 <div key={index} className="rounded-lg bg-accent p-5">
                   <span className="mb-8 flex size-12 items-center justify-center rounded-full bg-background">
                     {
-                      Icon ? <Icon className="size-6" /> : <Timer className="size-6" />
+                      Icon ? <Icon className="size-6" /> : <Sparkles className="size-6" />
                     }
                   </span>
                   <h3 className="mb-2 text-xl font-medium">{item.title}</h3>
