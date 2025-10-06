@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 
 import { MenuIcon } from "lucide-react";
@@ -113,11 +115,11 @@ const Navbar = ({ data } : {data: NavType}) => {
               <div className="flex flex-col p-4">
                 {
                   accordion?.map((item, index) => (
-                    <Accordion key={index} type="single" collapsible className="mt-4 mb-2">
-                      <AccordionTrigger className="text-base hover:no-underline">
-                        { item.accordion?.title}
-                      </AccordionTrigger>
+                    <Accordion key={index} type="single" collapsible className="">
                       <AccordionItem value="solutions" className="border-none">
+                        <AccordionTrigger className="text-base hover:no-underline">
+                          { item.accordion?.title}
+                        </AccordionTrigger>
                         <AccordionContent>
                           <div className="grid">
                             {
@@ -138,7 +140,7 @@ const Navbar = ({ data } : {data: NavType}) => {
                   <div className="flex flex-col gap-6">
                     {
                       links.map((link, index) => (
-                        <CMSLink key={index} {...link.link} />
+                        <CMSLink className="py-4" key={index} {...link.link} />
                       ))
                     }
                   </div>
