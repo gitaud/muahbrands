@@ -8,6 +8,6 @@ export const CTABlock: React.FC<CTABlockProps> = async (props) => {
   return (
     <CTA title={title} description={description} items={items.map(item => {
       return item.item!
-    })} buttonText={link.label} buttonUrl={link.url!} />
+    })} link={link} />
   )
 }
