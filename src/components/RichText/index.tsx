@@ -80,7 +80,7 @@ export default function RichText(props: Props) {
         {
           container: enableGutter,
           '': !enableGutter,
-          'mx-auto prose md:prose-md dark:prose-invert': enableProse,
+          'mx-auto prose md:prose-md': enableProse,
         },
         className,
       )}
