@@ -90,7 +90,7 @@ const Gallery = ({
     };
   }, [carouselApi]);
   return (
-    <section className="py-16">
+    <section className="py-8 lg:py-16">
       <div className="container mx-auto">
         <div className="mb-8 flex flex-col justify-between md:mb-14 md:flex-row md:items-end lg:mb-16">
           <div>
@@ -135,17 +135,17 @@ const Gallery = ({
         <Carousel
           setApi={setCarouselApi}
           opts={{
-            breakpoints: {
-              "(max-width: 768px)": {
-                dragFree: true,
-              },
-            },
+            // breakpoints: {
+            //   "(max-width: 768px)": {
+            //     dragFree: true,
+            //   },
+            // },
           }}
           className="relative w-full max-w-full md:left-[-1rem]"
         >
           <CarouselContent className="hide-scrollbar w-full max-w-full md:-mr-4 md:ml-8 2xl:ml-[max(8rem,calc(50vw-700px+1rem))] 2xl:mr-[max(0rem,calc(50vw-700px-1rem))]">
             {items.map((item) => (
-              <CarouselItem key={item.id} className="ml-8 md:max-w-[452px]">
+              <CarouselItem key={item.id} className="ml-8 max-w-[300px] md:max-w-[452px]">
                 <a
                   href={item.url}
                   className="group flex flex-col justify-between"
