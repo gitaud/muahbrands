@@ -17,7 +17,7 @@ export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richTex
             {links.map(({ link }, i) => {
               return (
                 <li key={i}>
-                  {/* @ts-ignore */}
+                  {/* @ts-expect-error rmv warning*/}
                   <CMSLink {...link} />
                 </li>
               )

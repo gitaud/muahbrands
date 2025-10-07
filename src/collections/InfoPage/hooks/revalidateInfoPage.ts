@@ -4,7 +4,6 @@ import { revalidatePath, revalidateTag } from 'next/cache'
 
 export const revalidateInfoPage: CollectionAfterChangeHook = ({
   doc,
-  previousDoc,
   req: { payload, context }
 }) => {
   if (!context.disableRevalidate) {

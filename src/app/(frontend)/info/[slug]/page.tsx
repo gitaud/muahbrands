@@ -43,9 +43,7 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { slug } = await paramsPromise
   const url = '/info/' + slug
 
-  let page: RequiredDataFromCollectionSlug<'info'> | null
-
-  page = await queryPageBySlug({
+  const page: RequiredDataFromCollectionSlug<'info'> | null = await queryPageBySlug({
     slug
   })
 

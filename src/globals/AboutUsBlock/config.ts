@@ -1,7 +1,4 @@
 import type { GlobalConfig, GroupField, Field } from 'payload'
-import { link } from '@/fields/link'
-
-import { Media } from '@/collections/Media'
 
 export const Logos: GroupField = {
   name: 'logos',

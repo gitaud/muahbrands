@@ -8,10 +8,8 @@ import React, { cache } from 'react'
 
 import { OurValues } from '@/globals/OurValues/Component'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
-import { RenderHero } from '@/heros/RenderHero'
 import { ImagesSliderComponent } from '@/components/HeroSlider'
 import { generateMeta } from '@/utilities/generateMeta'
-import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { About } from '@/globals/AboutUsBlock/Component'
 
@@ -50,9 +48,7 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { slug = 'home' } = await paramsPromise
   const url = '/' + slug
 
-  let page: RequiredDataFromCollectionSlug<'pages'> | null
-
-  page = await queryPageBySlug({
+  const page : RequiredDataFromCollectionSlug<'pages'> | null = await queryPageBySlug({
     slug,
   })
 
@@ -65,7 +61,7 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />
   }
 
-  const { hero, layout, heroSlider } = page
+  const { layout, heroSlider } = page
 
   return (
     <article className="">

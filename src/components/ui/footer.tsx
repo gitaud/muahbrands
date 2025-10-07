@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { CMSLink } from "../Link";
 
@@ -64,10 +65,6 @@ const defaultSocialLinks = [
   { icon: <FaLinkedin className="size-5" />, href: "#", label: "LinkedIn" },
 ];
 
-const defaultLegalLinks = [
-  { name: "Terms and Conditions", href: "#" },
-  { name: "Privacy Policy", href: "#" },
-];
 
 const Footer = ({
   logo = {
@@ -80,7 +77,6 @@ const Footer = ({
   description = "Your Branding and Printing Partner.",
   socialLinks = defaultSocialLinks,
   copyright = `© ${new Date().getFullYear()} muahbrands.com. All rights reserved.`,
-  legalLinks = defaultLegalLinks,
 }: FooterProps) => {
   return (
     <section className="py-16">
@@ -90,7 +86,9 @@ const Footer = ({
             {/* Logo */}
             <div className="flex items-center gap-2 lg:justify-start">
               <a href={logo.url}>
-                <img
+                <Image
+                  height={250}
+                  width={250}
                   src={logo.src}
                   alt={logo.alt}
                   title={logo.title}
@@ -115,8 +113,10 @@ const Footer = ({
           <div className="grid w-full gap-6 md:grid-cols-2 lg:gap-20">
             {sections.map((section, sectionIdx) => (
               <div key={sectionIdx}>
+                {/* ts-expect-error type mismatch */}
                 <h3 className="mb-4 font-bold">{section.links.title}</h3>
                 <ul className="text-muted-foreground space-y-3 text-sm">
+                  {/* ts-expect-error type mismatch */}
                   {section.links.items.map((link, linkIdx) => (
                     <li
                       key={linkIdx}

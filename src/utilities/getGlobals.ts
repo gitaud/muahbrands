@@ -9,7 +9,7 @@ type Global = keyof Config['globals']
 async function getGlobal(slug: Global, depth = 0) {
   const payload = await getPayload({ config: configPromise })
 
-  let args = {
+  const args = {
     slug,
     depth
   }

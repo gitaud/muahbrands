@@ -6,9 +6,9 @@ import type { Page } from "@/payload-types";
 import { getMediaUrl } from "@/utilities/getMediaUrl";
 
 export function ImagesSliderComponent(
-  { images, headline, cta_label, cta_link }: Page['heroSlider'] = {}
+  { images, headline }: Page['heroSlider'] = {}
 ) {
-  let imgs = images?.map(image => {
+  const imgs = images?.map(image => {
     if (image.image && typeof image.image === "object" && "url" in image.image && "updatedAt" in image.image) {
       return getMediaUrl(image.image.url, image.image.updatedAt);
     }
@@ -16,6 +16,7 @@ export function ImagesSliderComponent(
   }).filter(Boolean);
   
   return (
+    // @ts-expect-error images type mismatch
     <ImagesSlider className="h-[40rem]" images={imgs}>
       <motion.div
         initial={{

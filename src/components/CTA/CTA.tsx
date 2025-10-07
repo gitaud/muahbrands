@@ -1,6 +1,5 @@
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { CMSLinkType, CMSLink } from "@/components/Link";
 
 

@@ -1,4 +1,4 @@
-import type { Field, GroupField } from 'payload';
+import type { GroupField } from 'payload';
 import { link as Link } from '@/fields/link'
 
 export const Accordion: GroupField = {

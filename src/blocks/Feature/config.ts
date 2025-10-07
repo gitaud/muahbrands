@@ -1,5 +1,4 @@
 import type { Block, Field } from 'payload'
-import { linkGroup } from '@/fields/linkGroup'
 
 export const Feature: Field = {
   name: 'feature',

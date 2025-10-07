@@ -1,8 +1,7 @@
-// @ts-nocheck
-
 "use client";
 
 import { MenuIcon } from "lucide-react";
+import Link from "next/link";
 
 import {
   Accordion,
@@ -15,7 +14,6 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
@@ -39,7 +37,7 @@ const Navbar = ({ data } : {data: NavType}) => {
     <section className="py-4">
       <div className="container mx-auto">
         <nav className="flex items-center justify-between">
-          <a
+          <Link
             href="/"
             className="flex items-center gap-2"
           >
@@ -51,7 +49,7 @@ const Navbar = ({ data } : {data: NavType}) => {
             <span className="text-lg font-semibold tracking-tighter">
               Muah Branding
             </span>
-          </a>
+          </Link>
           <NavigationMenu className="hidden lg:block">
             <NavigationMenuList>
               {
@@ -61,6 +59,7 @@ const Navbar = ({ data } : {data: NavType}) => {
                     <NavigationMenuContent>
                       <div className="grid w-[600px] grid-cols-2 p-3">
                         {item?.accordion?.items?.map((link, index) => (
+                          // @ts-expect-error cms link type may throw some errors
                           <CMSLink {...link?.link}
                             key={index}
                             className={cn("rounded-md p-3 transition-colors hover:bg-muted/70", navigationMenuTriggerStyle())}
@@ -75,6 +74,7 @@ const Navbar = ({ data } : {data: NavType}) => {
               {
                 links?.map((link, index) => (
                   <NavigationMenuItem key={index}>
+                      {/* @ts-expect-error cms link type may throw some errors */}
                       <CMSLink {...link.link} className={navigationMenuTriggerStyle()} />
                   </NavigationMenuItem>
                 ))
@@ -84,6 +84,7 @@ const Navbar = ({ data } : {data: NavType}) => {
           <div className="hidden items-center gap-4 lg:flex">
              {
                 ctas && ctas.map((cta, index) => (
+                  // @ts-expect-error cms type error 
                   <CMSLink {...cta.link} key={index}/>
                 ))
              }
@@ -97,7 +98,7 @@ const Navbar = ({ data } : {data: NavType}) => {
             <SheetContent side="top" className="max-h-screen overflow-auto">
               <SheetHeader>
                 <SheetTitle>
-                  <a
+                  <Link
                     href="/"
                     className="flex items-center gap-2"
                   >
@@ -109,7 +110,7 @@ const Navbar = ({ data } : {data: NavType}) => {
                     <span className="text-lg font-semibold tracking-tighter">
                       Muah Branding
                     </span>
-                  </a>
+                  </Link>
                 </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col p-4">
@@ -124,6 +125,7 @@ const Navbar = ({ data } : {data: NavType}) => {
                           <div className="grid">
                             {
                               item.accordion?.items?.map((link, index) => (
+                                // @ts-expect-error cms link type may throw some errors
                                 <CMSLink {...link.link}
                                   key={index}
                                   className="rounded-md p-3 transition-colors hover:bg-muted/70"
@@ -140,6 +142,7 @@ const Navbar = ({ data } : {data: NavType}) => {
                   <div className="flex flex-col gap-6">
                     {
                       links.map((link, index) => (
+                        // @ts-expect-error cms link type may throw some errors
                         <CMSLink className="py-4" key={index} {...link.link} />
                       ))
                     }
@@ -148,6 +151,7 @@ const Navbar = ({ data } : {data: NavType}) => {
                 <div className="mt-6 flex flex-col gap-4">
                   {
                     ctas && ctas.map((cta, index) => (
+                      // @ts-expect-error cms link type may throw some errors
                       <CMSLink {...cta.link} key={index}/>
                     ))
                   }

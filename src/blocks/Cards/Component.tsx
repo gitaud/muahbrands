@@ -8,7 +8,7 @@ import React from 'react'
 export const CardsBlock: React.FC<
   CardsBlockProps & { id?: string }> 
  = async (props) => {
-  const { id, limit: limitFromProps, populatedBy, selectedDocs } = props;
+  const { limit: limitFromProps, populatedBy } = props;
 
   const limit = limitFromProps || 5;
 
@@ -30,6 +30,7 @@ export const CardsBlock: React.FC<
 
 
   return(
+    // @ts-expect-error gallery item conflicts, ignore
     <Gallery heading={'Services'} demoUrl='about-us' items={
       services.map(service => {
         return {
@@ -37,6 +38,7 @@ export const CardsBlock: React.FC<
           title: service.name,
           summary: service.description,
           url: "/services/" + service.slug,
+          // @ts-expect-error media types may mismatch, ignore
           image: (service?.meta?.image ? "/media/" + service.meta?.image?.filename : '/muah_logo.jpg')
         }
       })

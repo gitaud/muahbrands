@@ -1,9 +1,8 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/utilities/ui"
-import { CMSLink } from "../Link"
+import { CMSLink, CMSLinkType } from "../Link"
 
 interface CTAProps {
   badge?: {
@@ -11,7 +10,7 @@ interface CTAProps {
   }
   title: string
   description?: string
-  link: any
+  link: CMSLinkType
   withGlow?: boolean
   className?: string
 }
