@@ -25,11 +25,11 @@ const CTA = ({
   items = defaultItems,
 }: CTAProps) => {
   return (
-    <section className="py-16">
+    <section className="py-8 lg:py-16">
       <div className="container mx-auto">
         <div className="">
           <div className="">
-            <div className="flex flex-col items-start justify-between gap-8 rounded-lg bg-muted px-6 py-10 md:flex-row lg:px-20 lg:py-16">
+            <div className="flex flex-col items-start justify-between gap-8 rounded-lg bg-muted px-6 py-10 md:flex-row lg:px-20 lg:py-8 lg:py-16">
               <div className="md:w-1/2">
                 <h4 className="mb-1 text-2xl font-bold md:text-3xl">{title}</h4>
                 <p className="text-muted-foreground">{description}</p>

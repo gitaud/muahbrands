@@ -9,7 +9,7 @@ export const FeatureBlock: React.FC<FeatureBlockProps> = (props) => {
 
   
   return(
-    <div className="container py-16 lg:flex gap-2 lg:gap-4 flex-wrap">
+    <div className="container py-8 lg:py-16 lg:flex gap-2 lg:gap-4 flex-wrap">
       {
         props.features?.map(feature => (
           <Card className="my-2" key={feature.id}>

@@ -24,7 +24,7 @@ const FeatureList = (
   ]
 }: FeatureProps) => {
   return (
-    <section className="py-16">
+    <section className="py-8 lg:py-16">
       <div className="container mx-auto">
         <p className="mb-4 text-sm text-center text-muted-foreground lg:text-base">
           {title}

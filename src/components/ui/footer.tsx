@@ -79,7 +79,7 @@ const Footer = ({
   copyright = `© ${new Date().getFullYear()} muahbrands.com. All rights reserved.`,
 }: FooterProps) => {
   return (
-    <section className="py-16">
+    <section className="py-8 lg:py-16">
       <div className="container mx-auto">
         <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left">
           <div className="flex w-full flex-col justify-between gap-6 lg:items-start">
