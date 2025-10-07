@@ -86,9 +86,7 @@ const Footer = ({
             {/* Logo */}
             <div className="flex items-center gap-2 lg:justify-start">
               <a href={logo.url}>
-                <Image
-                  height={250}
-                  width={250}
+                <img
                   src={logo.src}
                   alt={logo.alt}
                   title={logo.title}
