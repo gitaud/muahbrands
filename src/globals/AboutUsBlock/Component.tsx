@@ -8,7 +8,7 @@ const About = async () => {
 
 
   return (
-    <section className="py-16">
+    <section className="py-8 lg:py-16">
       <div className="container">
         <div className="mb-14 grid gap-5 text-center md:grid-cols-2 md:text-left">
           <h2 className="text-4xl font-semibold">{about_us.headline}</h2>
