@@ -1,5 +1,7 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+// import nodemailer from 'nodemailer'
 
 import sharp from 'sharp' // sharp-import
 import path from 'path'
@@ -27,7 +29,23 @@ import { getServerSideURL } from './utilities/getURL'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+
+
 export default buildConfig({
+  email: nodemailerAdapter({
+    defaultFromAddress: process.env.SMTP_EMAIL!,
+    defaultFromName: process.env.DEFAULT_FROM_NAME!,
+    transportOptions: {
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: true,
+      auth: {
+        type: 'login',
+        user: process.env.SMTP_EMAIL,
+        pass: process.env.SMTP_PASSWORD,
+      },
+    }
+  }),
   admin: {
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
