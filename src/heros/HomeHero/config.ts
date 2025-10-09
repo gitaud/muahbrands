@@ -9,7 +9,6 @@ export const heroSlider: Field = {
       name: 'headline',
       type: 'text',
       label: 'Headline',
-      required: true
     },
     {
       name: 'subheadline',

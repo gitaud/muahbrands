@@ -209,8 +209,8 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  heroSlider: {
-    headline: string;
+  heroSlider?: {
+    headline?: string | null;
     subheadline?: string | null;
     cta_label?: string | null;
     cta_link?: string | null;
