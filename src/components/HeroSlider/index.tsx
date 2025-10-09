@@ -4,9 +4,10 @@ import React from "react";
 import { ImagesSlider } from "@/components/ui/images-slider";
 import type { Page } from "@/payload-types";
 import { getMediaUrl } from "@/utilities/getMediaUrl";
+import { Button } from "../ui/button";
 
 export function ImagesSliderComponent(
-  { images, headline }: Page['heroSlider'] = {}
+  { images, headline, subheadline, cta_label, cta_link }: Page['heroSlider'] = {}
 ) {
   const imgs = images?.map(image => {
     if (image.image && typeof image.image === "object" && "url" in image.image && "updatedAt" in image.image) {
@@ -17,7 +18,7 @@ export function ImagesSliderComponent(
   
   return (
     // @ts-expect-error images type mismatch
-    <ImagesSlider className="h-[40rem]" images={imgs}>
+    <ImagesSlider className="h-[80vh]" images={imgs}>
       <motion.div
         initial={{
           opacity: 0,
@@ -32,15 +33,17 @@ export function ImagesSliderComponent(
         }}
         className="z-50 flex flex-col justify-center items-center"
       >
-        <motion.p className="font-bold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
+        <motion.p className="font-bold text-6xl max-w-[60%] text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
           {headline}
         </motion.p>
-        {/* <a  href={cta_link!}>
-          <button className="px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
-              <span>{cta_label} →</span>
-              <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" />
-          </button>
-        </a> */}
+        <motion.p className="font-bold text-2xl max-w-[55%] text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
+          {subheadline}
+        </motion.p>
+        <a  href={cta_link!}>
+          <Button className="outline bg-transparent">
+            {cta_label}
+          </Button>
+        </a>
       </motion.div>
     </ImagesSlider>
   );

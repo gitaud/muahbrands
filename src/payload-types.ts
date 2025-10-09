@@ -209,8 +209,9 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  heroSlider?: {
-    headline?: string | null;
+  heroSlider: {
+    headline: string;
+    subheadline?: string | null;
     cta_label?: string | null;
     cta_link?: string | null;
     images?:
@@ -1328,6 +1329,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         headline?: T;
+        subheadline?: T;
         cta_label?: T;
         cta_link?: T;
         images?:

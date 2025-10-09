@@ -8,7 +8,13 @@ export const heroSlider: Field = {
     {
       name: 'headline',
       type: 'text',
-      label: 'Headline'
+      label: 'Headline',
+      required: true
+    },
+    {
+      name: 'subheadline',
+      type: 'text',
+      label: 'Subheadline',
     },
     {
       name: 'cta_label',
