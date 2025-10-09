@@ -28,6 +28,15 @@
     font-weight: unset;
   }
 
+  h1 {
+    font-weight: 700 !important;
+    font-size: 4rem !important;
+  }
+
+  h2 {
+    margin-top: 1.2rem !important;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;

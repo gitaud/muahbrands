@@ -50,7 +50,7 @@ export default async function Service({ params: paramsPromise }: Args) {
   const { hero, layout } = service;
 
   return (
-    <article className="pt-16 pb-24">
+    <article className="pb-24">
       <PayloadRedirects disableNotFound url={url} />
 
       { draft && <LivePreviewListener />}
