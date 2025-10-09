@@ -14,7 +14,7 @@ const About = async () => {
           <h2 className="text-4xl font-semibold">{about_us.headline}</h2>
           <RichText data={about_us.aboutUs!} />
         </div>
-        <div className="relative overflow-hidden rounded-xl bg-muted p-10 md:p-16">
+        <div className="relative overflow-hidden rounded-xl bg-oasis p-10 md:p-16">
           <div className="flex flex-col gap-4 text-center md:text-left">
             <h2 className="text-4xl font-semibold">{about_us.metrics?.headline}</h2>
             <p className="max-w-xl text-muted-foreground">
@@ -31,7 +31,7 @@ const About = async () => {
               </div>
             ))}
           </div>
-          <div className="pointer-events-none absolute -top-1 right-1 z-10 hidden h-full w-full bg-[linear-gradient(to_right,hsl(var(--muted-foreground))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--muted-foreground))_1px,transparent_1px)] [mask-image:linear-gradient(to_bottom_right,#000,transparent,transparent)] bg-[size:80px_80px] opacity-15 md:block"></div>
+          <div className="pointer-events-none absolute -top-1 right-1 z-10 hidden h-full w-full bg-[linear-gradient(to_right,hsl(var(--oasis))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--muted-foreground))_1px,transparent_1px)] [mask-image:linear-gradient(to_bottom_right,#000,transparent,transparent)] bg-[size:80px_80px] opacity-15 md:block"></div>
         </div>
       </div>
     </section>
